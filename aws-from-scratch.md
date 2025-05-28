@@ -21,6 +21,6 @@
 
 依序填入 Account ID、IAM role name、Display name - optional 並選擇 Display color - optional
 
-![Switch Role](https://github.com/user-attachments/assets/f5a7e4a5-7be4-4380-998f-69afac45ccb3)
+![Switch Role](https://github.com/user-attachments/assets/f300a43d-aec9-4454-9ded-ac371dcb2258)
 
 區域可以選擇 us-east-1 或 us-east-2 (測試環境)
