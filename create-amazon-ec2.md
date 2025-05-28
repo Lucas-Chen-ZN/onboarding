@@ -50,6 +50,18 @@
 
 ![已成功啟動執行個體](https://github.com/user-attachments/assets/28fed2de-d461-470a-8bc3-527d30915ec7)
 
+建立安全群組
+
+![建立安全群組](https://github.com/user-attachments/assets/35cbfcea-41e7-42e1-9482-bb13e994563d)
+
+於網路和安全的網路介面，開啟右上角動作清單選擇變更安全群組
+
+![變更安全群組](https://github.com/user-attachments/assets/4e875ff0-f023-4024-bbce-3dc853398a91)
+
+新增安全群組後儲存即可成功變更安全群組
+
+![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
+
 ## 5. 建立快照
 
 於 Elastic Block Store 分類下的快照建立快照
@@ -63,18 +75,6 @@
 成功建立快照
 
 ![已成功建立快照](https://github.com/user-attachments/assets/0a84996f-1d4c-479f-9f8d-1328a51f0935)
-
-建立安全群組
-
-![建立安全群組](https://github.com/user-attachments/assets/35cbfcea-41e7-42e1-9482-bb13e994563d)
-
-於網路和安全的網路介面，開啟右上角動作清單選擇變更安全群組
-
-![變更安全群組](https://github.com/user-attachments/assets/4e875ff0-f023-4024-bbce-3dc853398a91)
-
-新增安全群組後儲存即可成功變更安全群組
-
-![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
 
 ## 6. 連線
 
