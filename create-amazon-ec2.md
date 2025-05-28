@@ -10,23 +10,9 @@
 
 ## 3. 進入 EC2 預設登陸頁面
 
-![EC2 預設登陸頁面](https://github.com/user-attachments/assets/c491ea79-87e2-44bc-a7a3-91c5e3478197)
+![EC2 預設登陸頁面](https://github.com/user-attachments/assets/7dd1e5da-a113-475a-9fdd-715f720c9920)
 
-## 4. 建立安全群組
-
-於網路和安全分類下的安全群組建立安全群組
-
-![網路和安全 安全群組](https://github.com/user-attachments/assets/de0c0969-fddc-44d0-a28d-69d0e754b0b2)
-
-配置基本詳細資訊、傳入規則和傳出規則
-
-![建立安全群組](https://github.com/user-attachments/assets/ba3533c7-eb6f-4b5a-8a74-a3301459846c)
-
-已成功建立安全群組
-
-![安全群組已成功建立](https://github.com/user-attachments/assets/24a36e9c-88fe-4445-98c7-08f484c4313e)
-
-## 5. 配置執行個體
+## 4. 配置執行個體
 
 輸入名稱和標籤
 
@@ -46,11 +32,11 @@
 
 輸入金鑰對名稱、選擇 RSA 金鑰對類型並選擇搭配 PuTTY 使用的私有金鑰檔案格式，成功建立金鑰對後，請將 .ppk 檔案妥善保存
 
-![建立金鑰對](https://github.com/user-attachments/assets/99acf6a3-2ad1-4186-94bf-85c84a823a5d)
+![建立金鑰對](https://github.com/user-attachments/assets/d6280f70-86be-4d0c-a25e-3e7f7af1ef02)
 
 選擇編輯來進行網路設定，其中記得選取之前建立、現有的安全群組
 
-![網路設定](https://github.com/user-attachments/assets/055db52a-f0de-4c1e-8e67-87b5f5003b2e)
+![網路設定](https://github.com/user-attachments/assets/f27ab17f-8b20-44f8-b751-6d7bf6c3d380)
 
 設定 10GiB 容量儲存空間
 
@@ -58,13 +44,13 @@
 
 啟動執行個體
 
-![啟動執行個體](https://github.com/user-attachments/assets/5d3cc828-06d9-4dca-bc46-d5267c4a70df)
+![啟動執行個體](https://github.com/user-attachments/assets/54f94d45-9653-478a-b42a-c7e2597ca4ae)
 
 成功建立執行個體
 
-![已成功啟動執行個體](https://github.com/user-attachments/assets/72289fc9-8891-44c2-9463-758611468566)
+![已成功啟動執行個體](https://github.com/user-attachments/assets/28fed2de-d461-470a-8bc3-527d30915ec7)
 
-## 6. 建立快照
+## 5. 建立快照
 
 於 Elastic Block Store 分類下的快照建立快照
 
@@ -78,36 +64,48 @@
 
 ![已成功建立快照](https://github.com/user-attachments/assets/0a84996f-1d4c-479f-9f8d-1328a51f0935)
 
-## 7. 連線
+建立安全群組
+
+![建立安全群組](https://github.com/user-attachments/assets/35cbfcea-41e7-42e1-9482-bb13e994563d)
+
+於網路和安全的網路介面，開啟右上角動作清單選擇變更安全群組
+
+![變更安全群組](https://github.com/user-attachments/assets/4e875ff0-f023-4024-bbce-3dc853398a91)
+
+新增安全群組後儲存即可成功變更安全群組
+
+![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
+
+## 6. 連線
 
 選擇欲連線的執行個體
 
-![連線](https://github.com/user-attachments/assets/37741c3c-5f3b-4f06-a98e-6731b695cd19)
+![連線](https://github.com/user-attachments/assets/456538c3-829b-4886-b370-174c542aed81)
 
-### 7.1. EC2 Instance Connect
+### 6.1. EC2 Instance Connect
 
 選擇使用 EC2 Instance Connect 連線
 
-![連線至執行個體](https://github.com/user-attachments/assets/b0ae5f4f-a462-4f47-85ba-87126ed788ce)
+![連線至執行個體](https://github.com/user-attachments/assets/0c5580b3-eca4-4c2a-951d-4f6fdea80f3e)
 
 成功於瀏覽器建立連線
 
-![連線成功畫面](https://github.com/user-attachments/assets/c5c33cc6-9bd3-4a1e-bb42-8d36ebf86e9e)
+![連線成功畫面](https://github.com/user-attachments/assets/b14f3b94-5453-4767-b155-526e8dcefffe)
 
-### 7.2. SSH 用戶端 - PuTTY
+### 6.2. SSH 用戶端 - PuTTY
 
 安裝並開啟 PuTTY，透過 Connection -> SSH 進入 Auth Credentials to authenticate with 頁面，於 Private key file for authentication 選擇金鑰對
 
-![PuTTY Connection SSH Auth Credentials to authenticate with](https://github.com/user-attachments/assets/53a06459-336d-43be-91df-31aed8208d36)
+![PuTTY Connection SSH Auth Credentials to authenticate with](https://github.com/user-attachments/assets/501d6b48-223b-4339-9b6d-9b9b90b7da60)
 
 於 Session 頁面 Host Name (or IP address)輸入個體的公有 IPv4 位址、Sessions 名稱後，選擇建立連線
 
-![Session](https://github.com/user-attachments/assets/f06b85f6-8c99-4aaa-a519-34b2b38f1385)
+![Session](https://github.com/user-attachments/assets/5704043d-3d75-4c05-9c01-2c0bafab33e5)
 
 選擇 Accept 或 Connect Once
 
-![PuTTY Security Alert](https://github.com/user-attachments/assets/50c13b73-186b-4fa0-84c8-578d5fd27f2d)
+![PuTTY Security Alert](https://github.com/user-attachments/assets/edc46371-82fe-4183-b25d-4301630277b8)
 
 成功於 PuTTY 建立連線
 
-![連線成功畫面(1)](https://github.com/user-attachments/assets/01fadd33-0b95-4717-a83b-cba2f52737ea)
+![連線成功畫面(1)](https://github.com/user-attachments/assets/90a2bc0a-490b-40c3-b304-8a2199b5b614)
