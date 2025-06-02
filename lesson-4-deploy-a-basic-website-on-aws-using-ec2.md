@@ -57,6 +57,7 @@
 | `write_to_movie(title, director)` | 新增一筆電影資料，產生 UUID 為 id |
 | `update_in_movie(id, data)`       | 更新電影的 `title` 和 `director`  |
 | `delete_from_movie(id)`           | 刪除指定的電影                    |
+| `get_movie()`                     | 取得一筆特定電影資料：            |
 | `get_all_movies()`                | 撈取整個資料表內容(使用 scan)     |
 
 ```=python
