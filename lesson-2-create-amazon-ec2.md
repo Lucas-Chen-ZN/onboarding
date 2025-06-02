@@ -1,4 +1,4 @@
-# Lesson 1: Create Amazon EC2
+# Lesson 2: Create Amazon EC2
 
 ## 1. 由主控台首頁左上角的運算中找到EC2
 
