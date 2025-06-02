@@ -93,6 +93,15 @@ def create_table_movie():
     )
     return table
 
+# Retrieve a single movie by ID for editing
+def get_movie(id):
+    response = MovieTable.get_item(
+        Key={
+            'id': id
+        },
+    )
+    return response.get('Item')
+
 # Reference the Movie table object
 MovieTable = resource.Table('Movie')
 
