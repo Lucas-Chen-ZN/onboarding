@@ -1,4 +1,4 @@
-# Lesson 2: Flask from scratch
+# Lesson 3: Flask from scratch
 
 ## 1. 更新 OS
 
