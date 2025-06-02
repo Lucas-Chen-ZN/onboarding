@@ -62,27 +62,13 @@
 
 ![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
 
-## 5. 建立快照
-
-於 Elastic Block Store 分類下的快照建立快照
-
-![Elastic Block Store 快照](https://github.com/user-attachments/assets/16ee5c5e-a02c-46b7-89f6-bdc9aa139cf4)
-
-選擇執行個體快照來源和 ID、輸入快照詳細資訊並建立快照
-
-![建立快照](https://github.com/user-attachments/assets/e5405b29-e62b-48e4-a30b-6d84b1452d98)
-
-成功建立快照
-
-![已成功建立快照](https://github.com/user-attachments/assets/0a84996f-1d4c-479f-9f8d-1328a51f0935)
-
-## 6. 連線
+## 5. 連線
 
 選擇欲連線的執行個體
 
 ![連線](https://github.com/user-attachments/assets/456538c3-829b-4886-b370-174c542aed81)
 
-### 6.1. EC2 Instance Connect
+### 5.1. EC2 Instance Connect
 
 選擇使用 EC2 Instance Connect 連線
 
@@ -92,7 +78,7 @@
 
 ![連線成功畫面](https://github.com/user-attachments/assets/b14f3b94-5453-4767-b155-526e8dcefffe)
 
-### 6.2. SSH 用戶端 - PuTTY
+### 5.2. SSH 用戶端 - PuTTY
 
 安裝並開啟 PuTTY，透過 Connection -> SSH 進入 Auth Credentials to authenticate with 頁面，於 Private key file for authentication 選擇金鑰對
 
