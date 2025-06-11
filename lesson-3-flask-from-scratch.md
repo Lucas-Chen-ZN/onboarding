@@ -1,5 +1,9 @@
 # Lesson 3: Flask from scratch
 
+## 參考範例
+
+* [Flask 入门教程](https://tutorial.helloflask.com/)
+
 ## 1. 更新 OS
 
 ```
