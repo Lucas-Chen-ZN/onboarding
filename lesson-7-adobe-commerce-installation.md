@@ -70,7 +70,7 @@ Synchronizing state of nginx.service with SysV service script with /usr/lib/syst
 Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
 ```
 
-4. 安裝 PHP
+## 4. 安裝 PHP
 
 由於要使用 Nginx 作為 Web Server，所以不需要安裝 Apache。
 
@@ -218,7 +218,7 @@ short_open_tag = On
 max_execution_time = 3600
 ```
 
-5. 安裝 MySQL
+## 5. 安裝 MySQL
 
 ```
 ~$ sudo apt-get install mysql-server
@@ -319,7 +319,7 @@ Success.
 All done!
 ```
 
-6. 安裝 Composer
+## 6. 安裝 Composer
 
 先安裝 curl
 
@@ -354,7 +354,7 @@ PHP version 8.3.6 (/usr/bin/php8.3)
 Run the "diagnose" command to get more detailed diagnostics output.
 ```
 
-7. 安裝 Elasticsearch
+## 7. 安裝 Elasticsearch
 
 先安裝 `apt-transport-https`，允許使用透過 HTTPS 存取的儲存庫
 
@@ -496,7 +496,7 @@ xpack.security.enabled: false
 }
 ```
 
-8. 設定 MySQL 資料庫
+## 8. 設定 MySQL 資料庫
 
 ```
 ~$ sudo mysql -u root -p
@@ -517,7 +517,7 @@ mysql> EXIT
 Bye
 ```
 
-9. 設定 `/var/www/html` 權限
+## 9. 設定 `/var/www/html` 權限
 
 將之後要安裝 Magento 的資料夾的權限變更成擁有者可讀/寫/執行，其他人只能讀取/執行
 
@@ -531,6 +531,6 @@ drwxr-xr-x 3 root       root       4096 Jun 18 09:55 ../
 -rwxr-xr-x 1 lucas-chen lucas-chen  615 Jun 18 09:55 index.nginx-debian.html*
 ```
 
-10. 建立 Magento 的 Access Keys
+## 10. 建立 Magento 的 Access Keys
 
 ![Magento Access Keys](https://github.com/user-attachments/assets/60e17f00-39ee-4c82-81f7-644ecaa6e556)
