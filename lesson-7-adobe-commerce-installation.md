@@ -79,7 +79,7 @@ Executing: /usr/lib/systemd/systemd-sysv-install enable nginx
 就不會再安裝 Apache 了
 
 ```
-~$ sudo php-fpm
+~$ sudo apt-get install php-fpm
 ~$ sudo apt-get install php php-bcmath php-curl php-dev php-gd php-intl php-mbstring php-mysql php-soap php-xml php-zip
 ```
 
@@ -218,105 +218,129 @@ short_open_tag = On
 max_execution_time = 3600
 ```
 
-## 5. 安裝 MySQL
+## 5. 安裝 MariaDB
 
 ```
-~$ sudo apt-get install mysql-server
+~$ sudo apt-get install mariadb-server
 ```
 
-使用 `mysql -v` 檢視 MySQL 安裝的版本
+使用 `mysql -v` 檢視 MariaDB 安裝的版本
 
 ```
-~$ mysql --version
-mysql  Ver 8.0.42-0ubuntu0.24.04.1 for Linux on x86_64 ((Ubuntu))
+~$ mariadb --version
+mariadb  Ver 15.1 Distrib 10.11.13-MariaDB, for debian-linux-gnu (x86_64) using  EditLine wrapper
 ```
 
 使用 `systemctl status mysql` 檢視該服務是否確實啟動
 
 ```
-~$ sudo systemctl status mysql
-● mysql.service - MySQL Community Server
-     Loaded: loaded (/usr/lib/systemd/system/mysql.service; enabled; preset: enabled)
-     Active: active (running) since Wed 2025-06-18 11:22:53 CST; 2min 3s ago
-    Process: 19087 ExecStartPre=/usr/share/mysql/mysql-systemd-start pre (code=exited,>
-   Main PID: 19095 (mysqld)
-     Status: "Server is operational"
-      Tasks: 38 (limit: 9435)
-     Memory: 363.7M (peak: 377.8M)
-        CPU: 4.129s
-     CGroup: /system.slice/mysql.service
-             └─19095 /usr/sbin/mysqld
+~$ systemctl status mariadb
+● mariadb.service - MariaDB 10.11.13 database server
+     Loaded: loaded (/usr/lib/systemd/system/mariadb.service; enabled; preset: enabled)
+     Active: active (running) since Wed 2025-06-18 16:33:49 CST; 54s ago
+       Docs: man:mariadbd(8)
+             https://mariadb.com/kb/en/library/systemd/
+   Main PID: 16660 (mariadbd)
+     Status: "Taking your SQL requests now..."
+      Tasks: 13 (limit: 62276)
+     Memory: 78.7M (peak: 81.8M)
+        CPU: 371ms
+     CGroup: /system.slice/mariadb.service
+             └─16660 /usr/sbin/mariadbd
 
-Jun 18 11:22:52 NT200608-VM01 systemd[1]: Starting mysql.service - MySQL Community Ser>
-Jun 18 11:22:53 NT200608-VM01 systemd[1]: Started mysql.service - MySQL Community Serv>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Note] Plugin 'FE>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Note] InnoDB: Lo>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Warning] You nee>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Note] Server soc>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Note] InnoDB: Bu>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: 2025-06-18 16:33:49 0 [Note] /usr/sbin/>
+Jun 18 16:33:49 NT200608-VM01 mariadbd[16660]: Version: '10.11.13-MariaDB-0ubuntu0.24.>
+Jun 18 16:33:49 NT200608-VM01 systemd[1]: Started mariadb.service - MariaDB 10.11.13 d>
+Jun 18 16:33:49 NT200608-VM01 /etc/mysql/debian-start[16678]: Upgrading MariaDB tables>
+Jun 18 16:33:49 NT200608-VM01 /etc/mysql/debian-start[16689]: Checking for insecure ro>
 ```
 
-執行 `mysql_secure_installation` 提升 MySQL 安全性
+使用 `systemctl enable mariadb` 讓 MariaDB 服務成為開機啟動項目之一
+
+```
+~$ sudo systemctl enable mariadb
+Synchronizing state of mariadb.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install enable mariadb
+```
+
+執行 `mysql_secure_installation` 提升 MariaDB 安全性
 
 ```
 ~$ sudo mysql_secure_installation
 
-Securing the MySQL server deployment.
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
 
-Connecting to MySQL using a blank password.
+In order to log into MariaDB to secure it, we'll need the current
+password for the root user. If you've just installed MariaDB, and
+haven't set the root password yet, you should just press enter here.
 
-VALIDATE PASSWORD COMPONENT can be used to test passwords
-and improve security. It checks the strength of password
-and allows the users to set only those passwords which are
-secure enough. Would you like to setup VALIDATE PASSWORD component?
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
 
-Press y|Y for Yes, any other key for No: y
+Setting the root password or using the unix_socket ensures that nobody
+can log into the MariaDB root user without the proper authorisation.
 
-There are three levels of password validation policy:
+You already have your root account protected, so you can safely answer 'n'.
 
-LOW    Length >= 8
-MEDIUM Length >= 8, numeric, mixed case, and special characters
-STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
-
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 2
-
-Skipping password set for root as authentication with auth_socket is used by default.
-If you would like to use password authentication instead, this can be done with the "ALTER_USER" command.
-See https://dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-password-management for more information.
-
-By default, a MySQL installation has an anonymous user,
-allowing anyone to log into MySQL without having to have
-a user account created for them. This is intended only for
-testing, and to make the installation go a bit smoother.
-You should remove them before moving into a production
-environment.
-
-Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
-Success.
+Switch to unix_socket authentication [Y/n] Y
+Enabled successfully!
+Reloading privilege tables..
+ ... Success!
 
 
-Normally, root should only be allowed to connect from
-'localhost'. This ensures that someone cannot guess at
-the root password from the network.
+You already have your root account protected, so you can safely answer 'n'.
 
-Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
-Success.
-
-By default, MySQL comes with a database named 'test' that
-anyone can access. This is also intended only for testing,
-and should be removed before moving into a production
-environment.
+Change the root password? [Y/n] Y
+New password: 
+Re-enter new password: 
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
 
 
-Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] Y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] Y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] Y
  - Dropping test database...
-Success.
-
+ ... Success!
  - Removing privileges on test database...
-Success.
+ ... Success!
 
-Reloading the privilege tables will ensure that all changes
-made so far will take effect immediately.
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
 
-Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
-Success.
+Reload privilege tables now? [Y/n] Y
+ ... Success!
 
-All done!
+Cleaning up...
+
+All done!  If you've completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
 ```
 
 ## 6. 安裝 Composer
@@ -410,6 +434,8 @@ Created symlink /etc/systemd/system/multi-user.target.wants/elasticsearch.servic
 Jun 18 14:20:20 NT200608-VM01 systemd[1]: Starting elasticsearch.service - Elasticsear>
 Jun 18 14:20:35 NT200608-VM01 systemd[1]: Started elasticsearch.service - Elasticsearc>
 ```
+
+編輯 Elasticsearch 設定檔 `/etc/elasticsearch/elasticsearch.yml`
 
 ```
 # ---------------------------------- Cluster -----------------------------------
@@ -534,3 +560,110 @@ drwxr-xr-x 3 root       root       4096 Jun 18 09:55 ../
 ## 10. 建立 Magento 的 Access Keys
 
 ![Magento Access Keys](https://github.com/user-attachments/assets/60e17f00-39ee-4c82-81f7-644ecaa6e556)
+
+## 11. 安裝 Magento 2.4.7-p6
+
+如果直接使用 composer 建立 Magento2 的 project，會出現 `In ProjectInstaller.php line 69: mkdir(): Permission denied` 錯誤訊息
+
+```
+~$ composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition=2.4.7-p6 /var/www/magento2
+```
+
+這是因為 Composer 建立 `/var/www/magento2` 這個目錄和裡面的內容時，沒有足夠的權限
+因此必須先把該 `/var/www` 的所有權轉給目前的使用者 lucas-chen，然後再執行上一個指令
+
+```
+~$ sudo chown -R lucas-chen:lucas-chen /var/www
+```
+
+出現驗證請求時，得將步驟 10 的 Public Key 輸入到 Username；Private Key 輸入到 Password
+
+```
+    Authentication required (repo.magento.com):
+      Username: <Public Key>
+      Password: <Private Key>
+```
+
+依據參考範例和 StackExchange ([404 for pub/static files](https://magento.stackexchange.com/questions/259148/404-for-pub-static-files))，必須為 cache 和 static content 目錄設定權限，讓 Group Owner 擁有 write 權限
+
+```
+~$ cd /var/www/magento2
+/var/www/magento2$ find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+```
+
+除此之外，也要將 Magento 2 專案目錄的所有檔案與資料夾的 Owner 設為 `www-data`(大多數 Linux 中 Apache/Nginx 使用的帳號)，以確保 web server 能夠正確存取與寫入檔案(例如 cache、media、log等等)
+
+```
+/var/www/magento2$ sudo chown -R www-data:www-data /var/www/magento2
+/var/www/magento2$ sudo chmod -R 755 /var/www/magento2
+```
+
+上面三個變更權限的指令也可以使用下面的所有指令替代
+
+```
+sudo chown -R www-data:www-data /var/www/magento2
+sudo find /var/www/magento2 -type f -exec chmod 660 {} \;
+sudo find /var/www/magento2 -type d -exec chmod 2770 {} \;
+```
+
+## 12. 安裝 Magento 套件
+
+```
+/var/www/magento2$ sudo php bin/magento setup:install \
+--base-url=http://<domain name> \
+--db-host=localhost \
+--db-name=magentodb \
+--db-user=<db user> \
+--db-password=<db password> \
+--admin-firstname=<admin firstname> \
+--admin-lastname=<admin lastname> \
+--admin-email=<admin email> \
+--admin-user=<admin user> \
+--admin-password=<admin password> \
+--language=en_US \
+--currency=USD \
+--timezone=Asia/Taipei \
+--use-rewrites=1
+...
+[SUCCESS]: Magento installation complete.
+[SUCCESS]: Magento Admin URI: /admin_tvhdjs9
+Nothing to import.
+```
+
+## 13. 配置 Magento 要使用的 Nginx Web Server
+
+建立設定檔 `magento2.conf`
+
+```
+~$ sudo vi /etc/nginx/conf.d/magento2.conf
+```
+
+將下面的內容複製並貼上到空白的設定檔中
+
+```
+upstream fastcgi_backend {
+  server  unix:/run/php/php8.3-fpm.sock;
+}
+
+server {
+  listen 80;
+  server_name <domain name> www.<domain name>;
+  set $MAGE_ROOT /var/www/magento2;
+  include /var/www/magento2/nginx.conf.sample;
+
+  access_log /var/log/nginx/magento2-access.log;
+  error_log /var/log/nginx/magento2-error.log;
+}
+```
+
+重新啟動 nginx
+
+```
+~$ sudo systemctl restart nginx
+```
+
+## 14. 開啟 Magento Home Page
+
+開啟 Firefox 並在網址列輸入 `http://magento2.com/`，就能看到如下圖網頁
+
+![Home Page](https://github.com/user-attachments/assets/32355ab9-789a-4886-85b2-b6a4ecd13c09)
