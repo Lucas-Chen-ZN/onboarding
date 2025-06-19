@@ -692,7 +692,7 @@ ff02::2 ip6-allrouters
 
 ![Home Page](https://github.com/user-attachments/assets/32355ab9-789a-4886-85b2-b6a4ecd13c09)
 
-要進到後台管理網頁就要先
+要開啟後台管理網頁就要先使用 `php bin/magento info:adminuri` 指令取得 uri
 
 ```
 /var/www/magento2$ sudo php bin/magento info:adminuri
@@ -700,11 +700,13 @@ ff02::2 ip6-allrouters
 Admin URI: /<admin user>_<uri>
 ```
 
-[You need to configure Two-Factor Authorization in order to proceed](https://magento.stackexchange.com/questions/318485/you-need-to-configure-two-factor-authorization-in-order-to-proceed)
+然後參考 [You need to configure Two-Factor Authorization in order to proceed](https://magento.stackexchange.com/questions/318485/you-need-to-configure-two-factor-authorization-in-order-to-proceed) 暫時關閉 2FA 驗證
 
-
-
-````
+```
 ~$ cd /var/www/magento2/
 /var/www/magento2$ sudo bin/magento module:disable Magento_AdminAdobeImsTwoFactorAuth Magento_TwoFactorAuth
 ```
+
+開啟 Firefox 並在網址列輸入 `http://magento2.com/<admin user>_<uri>`，就能看到如下圖網頁
+
+![Magento Admin](https://github.com/user-attachments/assets/1937557a-acbc-4100-a84e-0450a4ef8012)
