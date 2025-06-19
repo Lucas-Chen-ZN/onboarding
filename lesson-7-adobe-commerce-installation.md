@@ -610,7 +610,7 @@ sudo find /var/www/magento2 -type d -exec chmod 2770 {} \;
 
 ```
 /var/www/magento2$ sudo php bin/magento setup:install \
---base-url=http://<domain name> \
+--base-url=http://<domain name>/ \
 --db-host=localhost \
 --db-name=magentodb \
 --db-user=<db user> \
@@ -662,7 +662,30 @@ server {
 ~$ sudo systemctl restart nginx
 ```
 
+
+
 ## 14. 開啟 Magento Home Page
+
+編輯 `/etc/hosts` 來設定 IP 和 Domain name 的對應並執行 `sudo systemd-resolve --flush-caches` 清除 DNS Cache
+
+```
+~$ cat /etc/hosts
+#127.0.0.1 localhost
+127.0.1.1 NT200608-VM01
+
+127.0.0.1 magento2.com www.magento2.com
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+```
+~$ sudo systemctl restart systemd-resolved
+```
 
 開啟 Firefox 並在網址列輸入 `http://magento2.com/`，就能看到如下圖網頁
 
