@@ -598,12 +598,19 @@ drwxr-xr-x 3 root       root       4096 Jun 18 09:55 ../
 /var/www/magento2$ sudo chmod -R 755 /var/www/magento2
 ```
 
-上面三個變更權限的指令也可以使用下面的所有指令替代
+上面三個變更權限的指令也可以使用下面的所有指令(官方建議)替代
 
 ```
-/var/www/magento2$ sudo chown -R www-data:www-data /var/www/magento2
-/var/www/magento2$ sudo find /var/www/magento2 -type f -exec chmod 660 {} \;
-/var/www/magento2$ sudo find /var/www/magento2 -type d -exec chmod 2770 {} \;
+~$ cd /var/www/magento2/
+/var/www/magento2$ sudo find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+/var/www/magento2$ sudo find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+/var/www/magento2$ sudo chown -R :www-data .
+/var/www/magento2$ sudo chmod u+x bin/magento
+```
+
+清除 Cache 可以使用 `php bin/magento cache:flush` 指令
+
+```
 /var/www/magento2$ sudo php bin/magento cache:flush
 ```
 
