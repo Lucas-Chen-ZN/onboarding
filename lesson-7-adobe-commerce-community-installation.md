@@ -1,4 +1,4 @@
-# Lesson 7: Adobe Ccommerce Installation
+# Lesson 7: Adobe Commerce Community Installation
 
 ## 
 
