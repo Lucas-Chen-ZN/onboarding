@@ -1,4 +1,4 @@
-# Lesson 1: git Diary
+# Lesson 1: `git` Diary
 
 ## 課程連結
 
