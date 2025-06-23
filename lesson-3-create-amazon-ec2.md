@@ -59,7 +59,7 @@
 > 原始資料授權條款：CC BY-SA 4.0  
 > 官方文件連結：[https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/what-is-amazon-vpc.html](https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/what-is-amazon-vpc.html)  
 
-
+* 上圖所示的範例 VPC，它為每個 Available Zone (在同一個 AWS Region 內) 均建立了一個 Subnet，各 Subnet 內部署了 EC2 Instance，並配置了 Internet Gateway，讓 VPC 內的資源能夠連接到 Internet
 
 ---
 
@@ -86,6 +86,23 @@
 新增安全群組後儲存即可成功變更安全群組
 
 ![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
+
+---
+
+什麼是安全群組？
+
+![security-group-overview](https://github.com/user-attachments/assets/cd86a576-0b9d-403a-8cbe-8a88bf8ef4f1)
+
+> 圖片參考來源：AWS Documentation - Control traffic to your AWS resources using security groups  
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-security-groups.html)  
+
+* 安全群組(security group)是 VPC 中的「虛擬防火牆」，控制與其相關資源(例如 EC2 Instance)的 inbound 與 outbound 的流量
+* 建立 VPC 時會自動產生一個預設 security group，後續亦可自行新增其它 security group  
+* Inbound rule：定義「Source + Port range + Protocol」；Outbound rule：定義「Destination + Port range + Protocol」
+* 只有符合 rule 的流量才可通過，例如：若允許 ICMP，可從本機 ping 到 instance；若未允許 SSH，則無法透過 SSH 與 instance 連線  
+
+---
 
 ## 6. 連線
 
