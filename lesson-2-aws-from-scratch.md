@@ -1,10 +1,10 @@
-# Lesson 1: aws from scratch
+# Lesson 2: aws from scratch
 
 ## 前置作業
 
 ### 1. 由直屬主管給予 AWS Account 資訊：
    * Account ID (zyxel-entrance)
-   * IAM username
+   * IAM (Identity and Access Management) username
    * (預設) Password
 ### 2. 由 IAM user sign in 登入
 ![Amazon Web Services Sign-In](https://github.com/user-attachments/assets/0cab011a-fec3-4c08-9322-28d1a932f61c)
