@@ -27,6 +27,11 @@
 
 ## Amazon Route 53, S3, CloudFront
 
+### 參考範例
+
+* [利用 AWS S3, Cloudfront, Route 53 五步驟部署前端 React App](https://malik11217.medium.com/%E5%88%A9%E7%94%A8-aws-s3-cloudfront-route-53-%E9%83%A8%E7%BD%B2-react-%E5%89%8D%E7%AB%AF%E6%87%89%E7%94%A8%E7%A8%8B%E5%BC%8F-d9475b8ea971)
+* [https://aws.amazon.com/tw/blogs/security/how-to-protect-your-web-application-against-ddos-attacks-by-using-amazon-route-53-and-a-content-delivery-network/](https://aws.amazon.com/tw/blogs/security/how-to-protect-your-web-application-against-ddos-attacks-by-using-amazon-route-53-and-a-content-delivery-network/)
+
 ![Amazon Route 53, S3, CloudFront](https://github.com/user-attachments/assets/a9d56f42-0008-4c31-a927-3eb79ab84937)
 > 圖片參考來源：AWS Blogs - How to Protect Your Web Application Against DDoS Attacks by Using Amazon Route 53 and an External Content Delivery Network  
 > 官方文章連結：[https://aws.amazon.com/tw/blogs/security/how-to-protect-your-web-application-against-ddos-attacks-by-using-amazon-route-53-and-a-content-delivery-network/](https://aws.amazon.com/tw/blogs/security/how-to-protect-your-web-application-against-ddos-attacks-by-using-amazon-route-53-and-a-content-delivery-network/)
