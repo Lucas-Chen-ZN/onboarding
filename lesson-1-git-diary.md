@@ -4,9 +4,100 @@
 
 * [Git/GitHub/GitLab完全教程(包括Git底层原理)](https://www.udemy.com/course/git-basic/?couponCode=ST16MT230625C)
 
-> 本筆記為我在修讀 Udemy 課程《Git/GitHub/GitLab完全教程(包括Git底层原理)》(講師：Peng Xiao) 時的個人學習紀錄整理  
+> 本筆記主要為我在修讀 Udemy 課程《Git/GitHub/GitLab完全教程(包括Git底层原理)》(講師：Peng Xiao) 時的個人學習紀錄整理  
 > 所有原課程內容之著作權屬原講師與 Udemy，若想獲得系統化教學與完整教材，請點課程連結購買課程支持原作者  
 > 若此筆記有任何侵權疑慮，請來信，我會立即修正或下架相關部分  
+
+## 補充：Adobe Commerce Pro 專案工作流程
+
+![environments](https://github.com/user-attachments/assets/32d09713-88a7-4bad-a285-61065996e3d0)
+> 圖片參考來源：Adobe Commerce Documentation - Pro project workflow  
+> 官方文件連結：[https://experienceleague.adobe.com/zh-hant/docs/commerce-on-cloud/user-guide/architecture/pro-develop-deploy-workflow](https://experienceleague.adobe.com/zh-hant/docs/commerce-on-cloud/user-guide/architecture/pro-develop-deploy-workflow)  
+
+* Pro 專案的三個主要環境：
+    * Production (正式)：用於上線與維護網站
+    * Staging (預備)：整合所有服務後進行全面測試
+    * Integration (整合)：開發與功能測試專用
+
+![development workflow](https://github.com/user-attachments/assets/9c37de39-3393-4a87-a904-93401c1c7e16)
+> 圖片參考來源：Adobe Commerce Documentation - Pro project workflow  
+> 官方文件連結：[https://experienceleague.adobe.com/zh-hant/docs/commerce-on-cloud/user-guide/architecture/pro-develop-deploy-workflow](https://experienceleague.adobe.com/zh-hant/docs/commerce-on-cloud/user-guide/architecture/pro-develop-deploy-workflow)  
+
+> 假設：以 `origin` 為遠端儲存庫的參照名稱，目前正在開發一個名稱為 `moon-landing` 的新功能，而 Active Branch 的遠端分支為 `active`，Integration 為 `integration`，以此類推。
+
+### I. 在本機先執行 Pull
+
+#### i. 切換到最新的目標分支 Active Branch
+
+```
+git checkout active
+```
+
+#### ii. Pull 最新的遠端內容
+
+```
+git pull --rebase origin
+```
+
+* `--rebase` 表示先更新，再把自己的 commit 依序黏貼到最新的點之後
+
+### II. 開發完成後 Push 到遠端
+
+#### i. 從 Active Branch 切出新功能分支
+
+```
+git checkout -b moon-landing
+```
+
+#### ii. Add 然後 Commit
+
+```
+git add .
+git commit -m "Apollo 11 is ready!"
+```
+
+#### iii. 首次 Push
+
+```
+git push -u origin moon-landing
+```
+
+* `-u` 表示建立關聯
+
+### III. 將功能分支 Merge 回 Active Branch
+
+```
+# 確保 Active 分支是最新的狀態
+git checkout active
+git pull --rebase origin active
+
+# 合併功能分支
+git merge --no-ff moon-landing
+
+# 推送回遠端
+git push origin active
+```
+
+* `--no-ff` 表示保留 Merge commit，方便日後回溯
+* 若有衝突必須先解決掉再 `git add <file>` 並 `git commit -m <message>` 後再繼續
+
+### IV. Active Branch → Integration → ...
+
+```
+git checkout integration
+git pull --rebase origin integration
+git merge --no-ff active
+git push origin integration
+```
+
+* 重複上述步驟，依序將 integration → staging → production → global-master，每一層都先 `pull` 再 `merge` 再 `push`。
+* 例如：
+    ```
+    git checkout staging
+    git pull --rebase origin staging
+    git merge --no-ff integration
+    git push origin staging
+    ```
 
 ## Git Bash / Windows PowerShell 常用基本指令
 
