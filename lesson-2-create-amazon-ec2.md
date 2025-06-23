@@ -50,7 +50,7 @@
 
 ![已成功啟動執行個體](https://github.com/user-attachments/assets/28fed2de-d461-470a-8bc3-527d30915ec7)
 
-建立安全群組
+## 5. 建立安全群組
 
 ![建立安全群組](https://github.com/user-attachments/assets/35cbfcea-41e7-42e1-9482-bb13e994563d)
 
@@ -62,13 +62,13 @@
 
 ![新增安全群組](https://github.com/user-attachments/assets/244defd7-006a-4827-9316-ad807b26bebf)
 
-## 5. 連線
+## 6. 連線
 
 選擇欲連線的執行個體
 
 ![連線](https://github.com/user-attachments/assets/456538c3-829b-4886-b370-174c542aed81)
 
-### 5.1. EC2 Instance Connect
+### 6.1. EC2 Instance Connect
 
 選擇使用 EC2 Instance Connect 連線
 
@@ -78,7 +78,7 @@
 
 ![連線成功畫面](https://github.com/user-attachments/assets/b14f3b94-5453-4767-b155-526e8dcefffe)
 
-### 5.2. SSH 用戶端 - PuTTY
+### 6.2. SSH 用戶端 - PuTTY
 
 安裝並開啟 PuTTY，透過 Connection -> SSH 進入 Auth Credentials to authenticate with 頁面，於 Private key file for authentication 選擇金鑰對
 
