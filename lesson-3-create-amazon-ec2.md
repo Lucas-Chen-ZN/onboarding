@@ -1,10 +1,22 @@
-# Lesson 2: Create Amazon EC2
+# Lesson 3: Create Amazon EC2
+
+## 什麼是 EC2？
+
+![instance-types-ec2](https://github.com/user-attachments/assets/6f5a43d0-43f9-4c24-b42f-0c3c6644898a)
+> 圖片參考來源：AWS Documentation - What is Amazon EC2?  
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/zh_tw/AWSEC2/latest/UserGuide/concepts.html](https://docs.aws.amazon.com/zh_tw/AWSEC2/latest/UserGuide/concepts.html)
+
+* 彈性擴充的雲端運算服務
+* 提供使用者依照需求啟動 VM、設定儲存、網路和安全性等等功能
+* 具有各種定價方式，包含[隨需](https://aws.amazon.com/tw/ec2/pricing/on-demand/) (隨用隨付)、[Savings Plans](https://aws.amazon.com/tw/savingsplans/compute-pricing/) (長期合約的年繳折扣) 和 [Spot](https://aws.amazon.com/tw/ec2/spot/pricing/) (釋出未使用的服務以提供更多的折扣，但必須面對系統失效的風險) 三種選項
+  * 預估需求成本：[aws pricing calculator](https://calculator.aws/#/)
 
 ## 1. 由主控台首頁左上角的運算中找到EC2
 
 ![服務 運算 EC2](https://github.com/user-attachments/assets/1b64d438-d38c-4862-9c1f-e349e245f560)
 
-## 2. 啟動執行個體
+## 2. 啟動執行個體，也就是在雲端運作的 VM
 
 ![啟動執行個體](https://github.com/user-attachments/assets/b458b89a-d2f3-4416-b329-23a1321b15d7)
 
@@ -37,6 +49,19 @@
 選擇編輯來進行網路設定，其中記得選取之前建立、現有的安全群組
 
 ![網路設定](https://github.com/user-attachments/assets/f27ab17f-8b20-44f8-b751-6d7bf6c3d380)
+
+---
+
+## 什麼是 VPC？
+
+![how-it-works-VPC](https://github.com/user-attachments/assets/f0b8f5e6-67f0-4ca5-9765-e95168e64f45)
+> 圖片參考來源：AWS Documentation - What is Amazon VPC?  
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/what-is-amazon-vpc.html](https://docs.aws.amazon.com/zh_tw/vpc/latest/userguide/what-is-amazon-vpc.html)  
+
+
+
+---
 
 設定 10GiB 容量儲存空間
 
