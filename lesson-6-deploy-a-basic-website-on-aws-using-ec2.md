@@ -26,7 +26,7 @@
 
 ![探索項目](https://github.com/user-attachments/assets/595a3af5-9b4c-45f5-b970-7a36a45ba5fc)
 
-## 2. 依照以下結構在 EC2 建立目錄和檔案
+## 2. 根據 Flask 框架的規範，依照以下結構在 EC2 建立目錄和檔案
 
 ```
 │   flaskproj
