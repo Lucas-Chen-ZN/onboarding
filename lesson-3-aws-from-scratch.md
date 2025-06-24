@@ -1,4 +1,4 @@
-# Lesson 2: aws from scratch
+# Lesson 3: aws from scratch
 
 ## 前置作業
 
