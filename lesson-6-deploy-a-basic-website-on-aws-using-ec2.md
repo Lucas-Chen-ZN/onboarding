@@ -1,4 +1,4 @@
-# Lesson 4: Deploy a basic website on aws using EC2
+# Lesson 6: Deploy a basic website on aws using EC2
 
 ## 1. 建立資料表
 
