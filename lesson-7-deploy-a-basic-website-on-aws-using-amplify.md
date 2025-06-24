@@ -1,4 +1,4 @@
-# Lesson 6: Deploy a basic website on aws using Amplify
+# Lesson 7: Deploy a basic website on aws using Amplify
 
 ## 參考範例
 
