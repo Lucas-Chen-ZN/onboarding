@@ -50,7 +50,7 @@
 1. 使用者從瀏覽器向 Route 53 發送 DNS request  
 2. Route 53 有為 `example.com` domain 配置了一個託管區域(hosted zone)  
 3. 該託管區域將提供以下 DNS record：  
-   a. 若查詢的是 root domain (apex zone，例如 example.com)，則會回應指向 CloudFront Distribution 的別名資源記錄集(alias resource record set，類似 CNAME record)  
+   a. 若查詢的是 root domain (apex zone，例如 `example.com`)，則會回應指向 CloudFront Distribution 的別名資源記錄集(alias resource record set，類似 CNAME record)  
    b. 若請求的是 `www` 子網域，則回應一筆指向外部託管的 CDN 的 CNAME record  
 4. CloudFront 將 request 轉送至 S3  
 5. S3 收到 request 後，會將來自 `example.com` 的流量以安全的方式重新導向(HTTPS Redirect)到 `www.example.com`  
