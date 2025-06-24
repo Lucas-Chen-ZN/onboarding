@@ -44,13 +44,7 @@
 * Table name 為 `Movie`
 * Primary key 為 `id`（字串型別）
 
-### 3.2. Table 操作
-
-| 函式名稱               | 功能說明                         |
-|:---------------------- |:-------------------------------- |
-| `create_table_movie()` | 建立 `Movie` 資料表（主鍵 `id`） |
-
-### 3.3. CRUD 操作
+### 3.2. CRUD 操作
 
 | 函式名稱                          | 功能說明                          |
 |:--------------------------------- |:--------------------------------- |
@@ -71,28 +65,8 @@ resource = boto3_resource(
     region_name='us-east-2'
 )
 
-# Create the "Movie" table with 'id' as the primary key
-def create_table_movie():
-    table = resource.create_table(
-        TableName='Movie',
-        KeySchema=[
-            {
-                'AttributeName': 'id',
-                'KeyType': 'HASH'  # Partition key
-            }
-        ],
-        AttributeDefinitions=[
-            {
-                'AttributeName': 'id',
-                'AttributeType': 'S'  # String type
-            }
-        ],
-        ProvisionedThroughput={
-            'ReadCapacityUnits': 10,
-            'WriteCapacityUnits': 10
-        }
-    )
-    return table
+# Reference the Movie table object
+MovieTable = resource.Table('Movie')
 
 # Retrieve a single movie by ID for editing
 def get_movie(id):
@@ -102,9 +76,6 @@ def get_movie(id):
         },
     )
     return response.get('Item')
-
-# Reference the Movie table object
-MovieTable = resource.Table('Movie')
 
 # Insert a new movie into the table
 def write_to_movie(title, director):
