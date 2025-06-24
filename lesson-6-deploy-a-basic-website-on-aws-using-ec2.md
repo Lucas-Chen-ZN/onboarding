@@ -1,5 +1,23 @@
 # Lesson 6: Deploy a basic website on aws using EC2
 
+## 什麼是 DynamoDB？
+
+* Serverless NoSQL database 服務
+
+![dynamodb-partition-key-1](https://github.com/user-attachments/assets/a3d889fd-1bab-4dbf-b97e-0be6799dd65a)
+> 圖片參考來源：AWS Blogs - Choosing the Right DynamoDB Partition Key
+> 官方文章連結：[https://aws.amazon.com/tw/blogs/database/choosing-the-right-dynamodb-partition-key/](https://aws.amazon.com/tw/blogs/database/choosing-the-right-dynamodb-partition-key/)
+
+* DynamoDB 支援的 Primary Key 類型：Partition Key 或 Partition Key + Sort Key
+
+![dynamodb-partition-key-2](https://github.com/user-attachments/assets/4f5eb800-f6b3-465f-af0e-a2d7db9270a7)
+> 圖片參考來源：AWS Blogs - Choosing the Right DynamoDB Partition Key
+> 官方文章連結：[https://aws.amazon.com/tw/blogs/database/choosing-the-right-dynamodb-partition-key/](https://aws.amazon.com/tw/blogs/database/choosing-the-right-dynamodb-partition-key/)
+
+* DynamoDB 會先把 partition key 值進行雜湊，再根據雜湊值決定資料要配置到哪個實體分割區(partition)，也就是說每個 table 都會配置到一個或多個 partition 上
+* 具有相同 partition key 的 item 通常會被放在同一個 partition 上，方便 query 時一次取得整個 collection (一組具有相同 partition key、不同 sort key 的 item)
+* 若單一欄位值「重複率高」，只有少數幾個可能值(例如：`status`(active/inactive))，就可以使用組合鍵(composite attribute)，例如將 `customerid#productid#countrycode` 作為 partition key、`order_date` 作為 sort key 這種字串拼接的方式
+
 ## 1. 建立資料表
 
 於主控台首頁的服務選單中選擇DynamoDB
