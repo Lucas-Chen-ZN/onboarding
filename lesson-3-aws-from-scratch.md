@@ -54,3 +54,36 @@
    b. 若請求的是 `www` 子網域，則回應一筆指向外部託管的 CDN 的 CNAME record  
 4. CloudFront 將 request 轉送至 S3  
 5. S3 收到 request 後，會將來自 `example.com` 的流量以安全的方式重新導向(HTTPS Redirect)到 `www.example.com`  
+
+## Amazon SES
+
+![arch_overview-diagram](https://github.com/user-attachments/assets/8899f5e0-72a3-4050-8610-1d6e5bcef814)
+> 圖片參考來源：AWS Documentation - How email sending works in Amazon SES  
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-process.html](https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-process.html)  
+
+* 📤 傳送 Email
+  1. 寄件人透過 Client 應用程式向 SES 發出送信的 Request
+  2. 若 Request 沒問題，SES 回傳成功 Response 及 message ID；若 Request 失敗(格式錯誤、寄件人地址未先驗證等)，會收到錯誤 Response 或例外。
+
+* 📥 SES 處理 Email
+  3. SES 根據 Request 參數以組合並掃描 Email(防毒)，然後使用 SMTP 傳送給收件人的 ISP
+
+* 📮 遞送結果
+  * ✅ 成功傳送：ISP 接收並送達收件人
+  * ❌ 退信(Bounce)
+    * 硬退信(Hard Bounce)：ISP 因為收件人地址無效或在 SES 黑名單而拒絕接收，當硬退信通知從 ISP 送回 SES，SES 會透過 Email 或 SNS (Amazon Simple Notification Service)通知寄件人
+    * 軟退信(Soft Bounce)：因為暫時性問題(收件人信箱已滿、網域不存在、ISP 太忙等)。SES 會在一個時間區間不斷重試，再決定是否通知退信
+    * 投訴(Complaint)：收件人將 Email 標記為垃圾郵件，ISP 就會通知 SES，SES 再通知寄件人
+    * 自動回覆(Auto-response)：ISP 會將「不在辦公室」(OOTO)的通知回傳給 SES，SES 將轉發給寄件人
+   
+## Amazon SQS
+
+![sqs-message-lifecycle-diagram](https://github.com/user-attachments/assets/250aec3d-c1c7-48b8-afdd-97b6a65d4f4c)
+> 圖片參考來源：AWS Documentation - What is Amazon Simple Queue Service?
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
+
+* 由分散式系統的元件(例如 EC2、Lambda等)、Queue 和 Queue 裡面的 Message 組成
+* Producer(生產者)：能將 Message 傳送至 Queue 的元件；Consumer(消費者)：從 Queue 中接收 Message 的元件
+* Queue 負責儲存 Message，並將這些訊息以冗餘的方式分散存放於多個 Amazon SQS Server 上，以確保可用性與可靠性
