@@ -144,9 +144,9 @@ def lambda_handler(event, context):
 什麼是 Amazon API Gateway？
 
 ![Product-Page-Diagram_Amazon-API-Gateway-How-Works](https://github.com/user-attachments/assets/967c821e-1563-4db7-b0eb-9f00772e052f)
-圖片參考來源：AWS Documentation - What is Amazon API Gateway?  
-原始資料授權條款：CC BY-SA 4.0  
-官方文件連結：[https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)  
+> 圖片參考來源：AWS Documentation - What is Amazon API Gateway?  
+> 原始資料授權條款：CC BY-SA 4.0  
+> 官方文件連結：[https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)  
 
 * 可以用來建立、發佈、維護、監控(AWS CloudTrail / Amazon CloudWatch)和保護(AWS WAF) REST (stateless)、HTTP (stateless) 和 WebSocket (stateful) API
 * API Gateway 可作為應用程式連接後端服務(部署於 Amazon EC2 的 App、AWS Lambda 中的程式碼、各類 Web App)的「入口點」，使其能夠存取資料、執行商業邏輯或觸發功能
