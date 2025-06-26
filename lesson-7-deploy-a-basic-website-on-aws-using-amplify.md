@@ -86,7 +86,16 @@
 
 ![Add Movie](https://github.com/user-attachments/assets/9f90b290-965a-4600-aa43-a1839df6c6de)
 
-## 2. 建立 Serverless Lambda 函數
+## 2. 建立 Lambda 函式
+
+---
+
+什麼是 AWS Lambda？
+
+* Lambda 是一種 serverless、event-driven 的運算服務
+* 只需要撰寫 Lambda 函式程式碼，Lambda 就會分配包含 CPU、記憶體、網路和其他運算資源的主機群給函式來執行
+
+---
 
 將 Lambda 函數的程式碼複製到程式碼來源中
 
@@ -128,7 +137,22 @@ def lambda_handler(event, context):
 
 ![Lambda 函數 my-movie-app-function 程式碼來源](https://github.com/user-attachments/assets/f5e89037-abeb-4900-b471-5d3e45d96bb8)
 
-## 3. 使用 API Gateway 建立 REST API
+## 3. 使用 API Gateway 建立 REST API 用於驗證和處理 Request
+
+---
+
+什麼是 Amazon API Gateway？
+
+![Product-Page-Diagram_Amazon-API-Gateway-How-Works](https://github.com/user-attachments/assets/967c821e-1563-4db7-b0eb-9f00772e052f)
+圖片參考來源：AWS Documentation - What is Amazon API Gateway?
+原始資料授權條款：CC BY-SA 4.0
+官方文件連結：[https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html)
+
+* 可以用來建立、發佈、維護、監控(AWS CloudTrail / Amazon CloudWatch)和保護(AWS WAF) REST (stateless)、HTTP (stateless) 和 WebSocket (stateful) API
+* API Gateway 可作為應用程式連接後端服務(部署於 Amazon EC2 的 App、AWS Lambda 中的程式碼、各類 Web App)的「入口點」，使其能夠存取資料、執行商業邏輯或觸發功能
+
+---
+
 
 建立 POST 方法並開啟 CORS (Cross-Origin Resource Sharing)允許 Server 讓 Browser 可以與除其自身以外的任何來源(domain、protocol 或 port)的資源互動，最後執行部署 API
 
