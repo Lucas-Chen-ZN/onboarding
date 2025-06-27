@@ -1,4 +1,4 @@
-# Lesson 1: Codility in PHP
+# Lesson 01: Codility in PHP
 
 ## Lesson 1
 
