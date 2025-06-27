@@ -1,4 +1,4 @@
-# Lesson 4: Create Amazon EC2
+# Lesson 04: Create Amazon EC2
 
 ## 什麼是 EC2？
 
