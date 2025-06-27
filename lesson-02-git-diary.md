@@ -1,4 +1,4 @@
-# Lesson 2: `git` Diary
+# Lesson 02: `git` Diary
 
 ## 課程連結
 
