@@ -1,4 +1,4 @@
-# Lesson 0: Visual Studio Code
+# Lesson 00: Visual Studio Code
 
 安裝好 VS Code 後，就可以安裝未來開發會使用到的延伸模組：
 
