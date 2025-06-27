@@ -1,4 +1,4 @@
-# Lesson 9: Zyxel Networks Installation
+# Lesson 09: Zyxel Networks Installation
 
 為了要下載 Zyxel Networks project Git 儲存庫的 code，必須先進行一些驗證相關的設定
 
