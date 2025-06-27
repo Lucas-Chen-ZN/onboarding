@@ -48,9 +48,9 @@
 
 ```
 │   flaskproj
-│   ├── app.py
+│   ├── app.py  # 定義 View Function
 │   ├── controller.py
-│   ├── templates/
+│   ├── templates/  # HTML Template
 │       ├── index.html
 │       └── edit.html
 ```
