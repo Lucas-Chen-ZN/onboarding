@@ -1,4 +1,4 @@
-# Lesson 6: Deploy a basic website on aws using EC2
+# Lesson 06: Deploy a basic website on aws using EC2
 
 ## 什麼是 DynamoDB？
 
