@@ -69,9 +69,12 @@ To view all commands, run: magento-cloud list
 ## 5. 列出可用的指令
 
 若出現指令清單，表示 bash 知道要去哪裡搜尋指令了
+也可以使用 `magento-cloud --version` 確認所安裝的 `magento-cloud` 的版本
 
 ```
 ~$ magento-cloud list
 Magento Cloud CLI 1.46.1
 ...
+~$ magento-cloud --version
+Magento Cloud CLI 1.46.1
 ```
