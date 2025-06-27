@@ -1,4 +1,4 @@
-# Lesson 5: Flask from scratch
+# Lesson 05: Flask from scratch
 
 ## 參考範例
 
