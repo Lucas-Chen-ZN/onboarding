@@ -1,4 +1,4 @@
-# Lesson 8: Adobe Commerce Community Installation
+# Lesson 08: Adobe Commerce Community Installation
 
 ## 
 
