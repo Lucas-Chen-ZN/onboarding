@@ -87,3 +87,52 @@
 * 由分散式系統的元件(例如 EC2、Lambda等)、Queue 和 Queue 裡面的 Message 組成
 * Producer(生產者)：能將 Message 傳送至 Queue 的元件；Consumer(消費者)：從 Queue 中接收 Message 的元件
 * Queue 負責儲存 Message，並將這些訊息以冗餘的方式分散存放於多個 Amazon SQS Server 上，以確保可用性與可靠性
+
+## AWS CloudFormation
+
+* 是一種基礎設施即程式碼(Infrastructure as Code，IaC)服務，讓使用者能透過範本/模板(template)來自動化建立、設定和管理 AWS 各式資源
+* Template 建立的 AWS 資源集合被稱作 Stack，這些資源會一起被建立、更新或刪除
+* 除了手動建立 template 之外，也可以使用 IaC generator 掃描資源，根據掃描結果建立 template，並將 template 匯入來使用
+* Template 支援 JSON 或 YAML 格式
+
+  |   格式   | 優點                                                 | 缺點                                               |
+  |:--------:|:---------------------------------------------------- |:-------------------------------------------------- |
+  | **JSON** | - 結構嚴謹，適合平台解析 <br> - 需要明確宣告所有元素 | - 不易閱讀與編寫 <br> - 巢狀結構較複雜             |
+  | **YAML** | - 可讀性高，語法簡潔 <br> - 更適合撰寫複雜範本       | - 結構較不嚴謹 <br> - 階層式的設計易因縮排導致錯誤 |
+
+  > 以下範例為[官方文件](https://docs.aws.amazon.com/zh_tw/AWSCloudFormation/latest/UserGuide/template-formats.html)所示之 YAML 範本：
+  
+  ```
+  AWSTemplateFormatVersion: 2010-09-09  # 範本符合的範本格式版本
+  Description: A sample CloudFormation template with YAML comments.
+  # Resources section
+  Resources:
+    MyEC2Instance: 
+      Type: AWS::EC2::Instance  # 指定資源類型為 EC2 instance
+      Properties: 
+        # Linux AMI
+        ImageId: ami-1234567890abcdef0  # 使用的 Amazon Linux AMI ID
+        InstanceType: t2.micro  # EC2 instance 類型
+        KeyName: MyKey  # SSH 金鑰名稱
+        # 設定 EC2 的 block device 對應
+        BlockDeviceMappings:
+          - DeviceName: /dev/sdm  # 指定 mount point
+            Ebs:
+              VolumeType: io1  # 使用的 EBS 磁碟類型
+              Iops: 200  # 指定 IOPS 效能
+              DeleteOnTermination: false  # EC2 終止時是否刪除此磁碟(false 表示保留)
+              VolumeSize: 20  # 磁碟大小(以 GB 為單位)
+  ```
+
+## AWS Certificate Manager
+
+### 參考範例
+
+* [https://docs.aws.amazon.com/zh_tw/acm/latest/userguide/acm-overview.html](https://docs.aws.amazon.com/zh_tw/acm/latest/userguide/acm-overview.html)
+
+### 簡介
+
+* ACM 可以用來建立、儲存和續約 SSL/TLS X.509 憑證與金鑰
+* ACM 也能發行憑證，或匯入第三方憑證進行管理
+* ACM 支援單一網域、多網域、萬用字元網域(若憑證中設定了網域名稱為 `*.example.com`，那麼以下網址都會被憑證保護：`https://www.example.com`、`https://store.example.com` 和 `https://blog.example.com`)
+* 由 AWS Private CA 簽發的憑證(Self-Signed Certificate)亦可匯出，用於內部 PKI 環境
