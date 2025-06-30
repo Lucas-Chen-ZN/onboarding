@@ -99,3 +99,7 @@ Resolving deltas: 100% (20303/20303), done.
 ```
 
 3. 安裝 Zyxel Networks project
+
+於 `/var/www/Zyxel-Networks` 中執行 `composer install`，然後在依照 Lesson 8 設定資料庫、目錄、Web server 等。
+
+Lesson 08
