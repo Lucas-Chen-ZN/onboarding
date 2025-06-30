@@ -174,7 +174,7 @@ Warning: the dump file is not excluded by Git
 
 完成後就可以看到新增的 Fine-grained personal access token
 
-![Lucas fine-grained personal access token](https://github.com/user-attachments/assets/f303e023-7689-42cb-ae99-23fabf47cf28)
+![Lucas fine-grained personal access token](https://github.com/user-attachments/assets/996bc5c5-6a37-4227-b5c8-00b9b59cc849)
 
 參考 [Authentication file](https://developer.adobe.com/commerce/contributor/guides/install/clone-repository/#authentication-file) 所示的格式建立 auth.json
 
@@ -194,4 +194,7 @@ Warning: the dump file is not excluded by Git
 }
 ```
 
-## 8. 
+## 8. 執行 composer update
+
+該指令會安裝 composer.json 中指定或最新版本的必要套件，然後更新 composer.lock，並將所安裝的套件版本記錄到裡面
+
