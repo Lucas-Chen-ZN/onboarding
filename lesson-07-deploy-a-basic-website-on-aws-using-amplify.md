@@ -5,7 +5,36 @@
 * [Deploy Your First Web App on AWS with AWS Amplify, Lambda, DynamoDB and API Gateway](https://dev.to/juliafmorgado/deploy-your-first-web-app-on-aws-with-aws-amplify-lambda-dynamodb-and-api-gateway-2ah7)
 * [Serverless Web App Development Made Easy: A Complete Guide with AWS Amplify, DynamoDB, Lambda and API Gateway](https://kevinkiruri.medium.com/serverless-web-app-development-made-easy-a-complete-guide-with-aws-amplify-dynamodb-lambda-and-052daf5b978d)
 
+## 架構
+
+```mermaid
+flowchart LR
+    A[AWS Amplify] -->|CALLS| B[Amazon API Gateway]
+    B -->|INVOKES| C[AWS Lambda]
+    C -->|RUNS| D[Python Code]
+    C -->|STORES DATA| E[Amazon DynamoDB]
+    F[IAM Role] --> C
+    G[IAM Policy] --> F
+```
+
+1. 使用者操作前端
+2. AWS Amplify 呼叫 API Gateway
+3. API Gateway 呼叫 Lambda
+4. Lambda 執行 Python 函式
+5. Lambda 儲存資料至 DynamoDB
+
+* IAM Role/Policy 在背景授權 Lambda 是否有執行各項操作的存取控制權
+
 ## 1. 將前端程式碼部署到 AWS Amplify
+
+---
+
+什麼是 AWS Amplify？
+
+* Web app 託管平台，用來建立、部署與管理前端，讓開發者能快速整合後端服務(例如認證、API、資料庫等)
+* Amplify 會將 app 部署到 AWS CDN 實現 serverless 的架構
+
+---
 
 把 `index.html` 壓縮到壓縮檔案再上傳至 Amplify
 
