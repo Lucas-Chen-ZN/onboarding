@@ -6,28 +6,10 @@
 
 ## MVVM 框架
 
-### Model
-
-* 負責層級：資料與商業邏輯
-* 功能：
-  * 定義商業邏輯
-  * 存取資料庫
-
-### View
-
-* 負責層級：UI
-* 功能：
-  * 畫面呈現與資料視覺化
-  * 僅負責顯示資料(不處理商業邏輯)
-  * 以 `.phtml` 檔實作，`.phtml` 檔會和 Layout (定義網頁區塊與結構)的 `.xml` 檔組成 binder
-
-### ViewModel
-
-* 負責層級：介於 Model 和 View 之間的中介
-* 功能：
-  * 從 Model 層獲取資料並進行轉換
-  * 將資料整理成 View 需要的格式
-  * 操作 Model 來處理商業邏輯和使用者的 Request
+* Model：商業邏輯，跟資料庫互動，藉由 ResourceModel 存取 DB
+* View：頁面的 HTML 結構，由 .phtml 檔(template)生成
+* ViewModel：提供 View 要用的資料，Magento 2 裡對應的是 Block
+* Controller：只負責「處理流程」，收到請求決定呼叫哪個 View 或重導頁面，Controller 不直接回傳資料給 View，而是呼叫 Block 準備資料給 template(.phtml 檔)。
 
 ---
 
@@ -43,25 +25,25 @@
 total 116
 drwxrws---  16 www-data www-data  4096 Jun 19 14:09 ./
 drwxrws--- 386 www-data www-data 20480 Jun 19 14:09 ../
-drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Api/  # Service Interface 與 Data Interface
-drwxrws---   4 www-data www-data  4096 Jun 19 14:09 Block/  # ViewModel
+drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Api/  # Service Contract(Service Interface 與 Data Interface)
+drwxrws---   4 www-data www-data  4096 Jun 19 14:09 Block/  # ViewModel(提供資料給 PHTML)
 drwxrws---   2 www-data www-data  4096 Jun 19 14:09 Command/
 drwxrws---   6 www-data www-data  4096 Jun 19 14:09 Controller/  # 處理路由
 drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Helper/  # 輔助性質功能函式
 -rw-rw----   1 www-data www-data 10364 Jun  2 21:42 LICENSE.txt
 -rw-rw----   1 www-data www-data 10376 Jun  2 21:42 LICENSE_AFL.txt
-drwxrws---  11 www-data www-data  4096 Jun 19 14:09 Model/  # Model(資料 object，實作 Data Interface) + ResourceModel(ORM，實際執行 query) + Collection (用來操作 ORM，組裝出符合的 query set)
-drwxrws---   2 www-data www-data  4096 Jun 19 14:09 Observer/  # 監聽事件，被事件觸發後會建立一個 Model object 來執行所需的商業邏輯
+drwxrws---  11 www-data www-data  4096 Jun 19 14:09 Model/  # Model(資料 object，實作 Data Interface) + ResourceModel(ORM，實際執行 query，Model 會存到哪張 table、主鍵是什麼) + Collection (用來操作 ORM，組裝出符合的 query set)
+drwxrws---   2 www-data www-data  4096 Jun 19 14:09 Observer/  # 接收系統事件，被事件觸發後會建立一個 Model object 來執行所需的商業邏輯
 -rw-rw----   1 www-data www-data  1326 Jun  2 21:42 README.md
-drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Setup/  # Migration class，負責建立 table 和 data
+drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Setup/  # Migration class，負責建立 table 和 data (資料庫結構及預設資料)
 drwxrws---   5 www-data www-data  4096 Jun 19 14:09 Test/  # Unit test
 drwxrws---   3 www-data www-data  4096 Jun 19 14:09 Ui/  # UI element
 drwxrws---   3 www-data www-data  4096 Jun 19 14:09 ViewModel/
 -rw-rw----   1 www-data www-data   987 Jun  2 21:42 composer.json
-drwxrws---   6 www-data www-data  4096 Jun 19 14:09 etc/  # 模組組態設定
+drwxrws---   6 www-data www-data  4096 Jun 19 14:09 etc/  # 所有設定檔(定義路由、model、block、observer 等)
 drwxrws---   2 www-data www-data  4096 Jun 19 14:09 i18n/  # 翻譯用 .csv 檔
 -rw-rw----   1 www-data www-data   241 Jun  2 21:42 registration.php
-drwxrws---   4 www-data www-data  4096 Jun 19 14:09 view/  # 前端 .xml 和 .phtml 檔
+drwxrws---   4 www-data www-data  4096 Jun 19 14:09 view/  # 前端和後台的 layout XML 與 .phtml 模板
 ```
 
 ![Magento 2 module](https://github.com/user-attachments/assets/9abb4011-ac12-4ec0-9e4a-7e450534a528)
@@ -106,7 +88,7 @@ drwxrws---   4 www-data www-data  4096 Jun 19 14:09 view/  # 前端 .xml 和 .ph
 1. 建立 `app/code/Toptal/Blog` 目錄，存放所有 Blog 模組的 Code
 2. 建立三個註冊檔
  * `composer.json` - 在未使用 Composer 的狀況下提供 Composer 讀取而不出現錯誤訊息
- * `registration.php` - 呼叫 ComponentRegistrar::register 把 'Toptal_Blog' 加入 autoloader，讓 Magento 知道要去哪裡尋找模組的 Class 和 XML 檔
+ * `registration.php` - 呼叫 ComponentRegistrar::register 把 'Toptal_Blog' 加入 autoloader，讓 Magento 知道要去哪裡尋找模組的 Class 和 XML 檔 (告訴 Magento 這個模組存在、要怎麼 autoload)
 
 ```
 <?php
@@ -115,7 +97,7 @@ drwxrws---   4 www-data www-data  4096 Jun 19 14:09 view/  # 前端 .xml 和 .ph
 );
 ```
    
- * `etc/module.xml` - 註冊 Magento 模組名稱、Magento 安裝版本、相依的兩個核心模組：`Magento_Directory` 和 `Magento_Config`
+ * `etc/module.xml` - 註冊 Magento 模組名稱、Magento 安裝版本、相依的兩個核心模組：`Magento_Directory` 和 `Magento_Config` (定義模組名稱、版本（用於 migration）、依賴其他模組)
 
 ```
 <?xml version="1.0"?>
